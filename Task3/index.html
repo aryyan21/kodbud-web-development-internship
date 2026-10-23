@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The DevLog — Thoughts on Web, Design & Code</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* CSS Variables for Easy Customization */
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --text-headline: #0f172a;
+      --text-body: #475569;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 12px 28px -6px rgba(15, 23, 42, 0.12),
+        0 8px 12px -4px rgba(15, 23, 42, 0.04);
+      --radius: 14px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-body);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Page Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header & Hero */
+    header {
+      padding: 4rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .site-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background-color: var(--accent-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    h1.site-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--text-headline);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    p.site-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* Post Feed */
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+
+    /* Post Card */
+    .post-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Card Hover Effects */
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    /* Meta Details (Author, Date, Category) */
+    .post-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .badge {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .separator {
+      color: #cbd5e1;
+    }
+
+    .post-author {
+      font-weight: 600;
+      color: var(--text-headline);
+    }
+
+    /* Post Typography */
+    .post-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-title a {
+      color: var(--text-headline);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    /* Highlight title on post hover */
+    .post-card:hover .post-title a {
+      color: var(--accent);
+    }
+
+    .post-description {
+      font-size: 1rem;
+      color: var(--text-body);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Read More Link */
+    .read-more {
+      align-self: flex-start;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.925rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: var(--transition);
+    }
+
+    .read-more span {
+      transition: transform 0.2s ease;
+    }
+
+    .read-more:hover {
+      color: var(--accent-hover);
+    }
+
+    .read-more:hover span {
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header {
+        padding: 2.5rem 0 1.5rem;
+      }
+      h1.site-title {
+        font-size: 2.1rem;
+      }
+      .post-card {
+        padding: 1.5rem;
+      }
+      .post-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <span class="site-tag">Curated Reads</span>
+      <h1 class="site-title">The DevLog</h1>
+      <p class="site-subtitle">
+        Weekly perspectives on software craft, interface engineering, and system design.
+      </p>
+    </header>
+
+    <!-- Blog Posts List -->
+    <main class="post-list">
+      <!-- Post 1 -->
+      <article class="post-card">
+        <div class="post-meta">
+          <span class="badge">Architecture</span>
+          <span class="post-author">Elena Rostova</span>
+          <span class="separator">•</span>
+          <time datetime="2024-10-18">October 18, 2024</time>
+        </div>
+        <h2 class="post-title">
+          <a href="#">Building Scalable Frontends with Modern CSS & Subgrid</a>
+        </h2>
+        <p class="post-description">
+          Modern CSS has evolved past simple utility hacks. Explore how subgrid, container queries, and cascade layers empower engineers to architect modular, self-healing layouts that remain flexible across devices.
+        </p>
+        <a class="read-more" href="#">
+          Read full story <span>&rarr;</span>
+        </a>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post-card">
+        <div class="post-meta">
+          <span class="badge">Performance</span>
+          <span class="post-author">Marcus Vance</span>
+          <span class="separator">•</span>
+          <time datetime="2024-10-12">October 12, 2024</time>
+        </div>
+        <h2 class="post-title">
+          <a href="#">The Psychology of Speed: Why Perceived Latency Matters</a>
+        </h2>
+        <p class="post-description">
+          Raw load speed is just one piece of the puzzle. Discover how strategic skeleton screens, optimistic state mutations, and micro-interactions turn potential wait times into a responsive user experience.
+        </p>
+        <a class="read-more" href="#">
+          Read full story <span>&rarr;</span>
+        </a>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="post-card">
+        <div class="post-meta">
+          <span class="badge">Accessibility</span>
+          <span class="post-author">Sarah Jenkins</span>
+          <span class="separator">•</span>
+          <time datetime="2024-10-04">October 4, 2024</time>
+        </div>
+        <h2 class="post-title">
+          <a href="#">Accessible by Default: A Pragmatic Guide to ARIA & Focus</a>
+        </h2>
+        <p class="post-description">
+          Web accessibility is often treated as a last-minute audit checkpoint. Learn how simple semantic HTML choices and keyboard-first design reduce developer rework while making your apps universally usable.
+        </p>
+        <a class="read-more" href="#">
+          Read full story <span>&rarr;</span>
+        </a>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 The DevLog. Built with clean HTML & CSS.</p>
+    </footer>
+  </div>
+</body>
+</html>
